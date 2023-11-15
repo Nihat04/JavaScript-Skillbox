@@ -1,4 +1,4 @@
-function GetRandomArray(count) {
+function getRandomArray(count) {
     arr = [];
 
     for (let i = 0; i < count; i++) {
@@ -15,6 +15,6 @@ function GetRandomArray(count) {
     return arr;
 }
 
-console.log(GetRandomArray(5));
-console.log(GetRandomArray(7));
-console.log(GetRandomArray(3));
+console.log(getRandomArray(5));
+console.log(getRandomArray(7));
+console.log(getRandomArray(3));

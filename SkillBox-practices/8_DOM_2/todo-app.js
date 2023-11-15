@@ -26,12 +26,7 @@
         form.append(btnWrapper);
 
         input.addEventListener('input', function () {
-            if (!input.value) {
-                btn.setAttribute('disabled', '');
-            }
-            else {
-                btn.removeAttribute('disabled');
-            }
+            btn.disabled = !input.value;
         })
 
         return {
@@ -87,7 +82,7 @@
         container.append(todoItemForm.form);
         container.append(todoList);
 
-        LoadTodoList(todoList, title);
+        loadTodoList(todoList, title);
 
         todoItemForm.form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -99,24 +94,7 @@
                 name: todoItemForm.input.value,
                 done: false,
             }
-            let todoItem = createTodoItem(todoItemData);
-
-            todoItem.doneBtn.addEventListener('click', function () {
-                todoItem.item.classList.toggle('list-group-item-success');
-                let changedItem = todoArr.find(el => el.id === todoItem.id);
-                changedItem.done = !changedItem.done
-                setItemData(title, todoArr);
-            })
-            todoItem.deleteBtn.addEventListener('click', function () {
-                if (confirm('Вы уверены?')) {
-                    todoItem.item.remove();
-                    todoArr = todoArr.filter(el => el.id !== todoItem.id)
-                    setItemData(title, todoArr);
-                }
-            })
-
-            todoList.append(todoItem.item);
-            todoArr.push(todoItemData)
+            createNewItem(todoItemData, todoList, title)
             todoItemForm.btn.setAttribute('disabled', '')
             todoItemForm.input.value = '';
 
@@ -124,33 +102,38 @@
         })
     }
 
-    function LoadTodoList(todoList, listName) {
-        todoArr = getItemData(listName);
-        for(todoEl of todoArr) {
-            let todoItem = createTodoItem(todoEl)
-
-            todoItem.doneBtn.addEventListener('click', function () {
-                todoItem.item.classList.toggle('list-group-item-success');
-                let changedItem = todoArr.find(el => el.id === todoItem.id);
-                changedItem.done = !changedItem.done
-                setItemData(listName, todoArr);
-            })
-            todoItem.deleteBtn.addEventListener('click', function () {
-                if (confirm('Вы уверены?')) {
-                    todoItem.item.remove();
-                    todoArr = todoArr.filter(el => el.id !== todoItem.id)
-                    setItemData(listName, todoArr);
-                }
-            })
-            todoList.append(todoItem.item)
+    function loadTodoList(todoList, listName) {
+        let loadedData = getItemData(listName);
+        for(todoEl of loadedData) {
+            createNewItem(todoEl, todoList, listName)
         }
+    }
+
+    function createNewItem(data, todoList, listName) {
+        let todoItem = createTodoItem(data)
+
+        todoItem.doneBtn.addEventListener('click', function () {
+            todoItem.item.classList.toggle('list-group-item-success');
+            let changedItem = todoArr.find(el => el.id === todoItem.id);
+            changedItem.done = !changedItem.done
+            setItemData(listName, todoArr);
+        })
+        todoItem.deleteBtn.addEventListener('click', function () {
+            if (confirm('Вы уверены?')) {
+                todoItem.item.remove();
+                todoArr = todoArr.filter(el => el.id !== todoItem.id)
+                setItemData(listName, todoArr);
+            }
+        })
+        todoList.append(todoItem.item);
+        todoArr.push(data);
     }
 
     function getLastId(arr) {
         maxId = 0;
         for(el of arr)
             maxId = Math.max(maxId, el.id);
-        return maxId
+        return arr.sort((a, b) => b.id - a.id)
     }
 
     function setItemData(listName, data) {
@@ -160,7 +143,7 @@
 
     function getItemData(listName) {
         arr = JSON.parse(localStorage.getItem(listName))
-        if(arr === null)
+        if(!arr)
             return []
         return arr;
     }

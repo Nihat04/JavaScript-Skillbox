@@ -23,14 +23,7 @@ let allUsers = [
 ]
 
 function getOlderUserArray(arr) {
-    let oldestUser = arr[0];
-
-    for(let i = 1; i < arr.length; i++) {
-        if(arr[i].age > oldestUser.age) {
-            oldestUser = arr[i];
-        }
-    }
-    return oldestUser.name;
+    return arr.sort((a, b) => b.age - a.age)[0];
 }
 
 

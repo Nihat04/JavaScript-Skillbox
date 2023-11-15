@@ -15,38 +15,13 @@ let blackList = ['jsfunc@mail.ru','goodday@day.ru']
 // Вызов созданной функции:
 
 function filter(whiteList, blackList) {
-    let allowedList = []
-    for(const el of whiteList) {
-        if (!(blackList.includes(el)))
-            allowedList.push(el)
-    }
-    return allowedList
+    return whiteList.filter(email => !blackList.includes(email))
 }
 
 console.log(filter(whiteList, blackList))
 
 function arrSort(array) {
-    if (array.length < 2) 
-        return array;
-
-    let min = 1;
-    let max = array.length - 1;
-    let rand = Math.floor(min + Math.random() * (max + 1 - min));
-    let pivot = array[rand];
-    
-    const left = [];
-    const right = [];
-    array.splice(array.indexOf(pivot), 1);
-    array = [pivot].concat(array);
-    
-    for (let i = 1; i < array.length; i++) {
-      if (pivot > array[i]) {
-        left.push(array[i]);
-      } else {
-        right.push(array[i]);
-      }
-    }
-    return arrSort(left).concat(pivot, arrSort(right));
+    return array.sort();
 }
 
 console.log(arrSort([9,4,5,7,2,8,1,3,6]))

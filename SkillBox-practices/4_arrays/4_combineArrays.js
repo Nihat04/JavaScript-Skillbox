@@ -1,9 +1,5 @@
-function Combine(arr1, arr2) {
-    for( let el of arr2) {
-        arr1.push(el);
-    }
-    
-    return arr1;
+function combine(arr1, arr2) {
+    return arr1.concat(arr2);
 }
 
-console.log(Combine([1,2,3], [9,8,7]));
+console.log(combine([1,2,3], [9,8,7]));

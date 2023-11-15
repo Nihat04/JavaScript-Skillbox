@@ -1,4 +1,4 @@
-function GetRandomArray(n, m, count) {
+function getRandomArray(n, m, count) {
     minValue = Math.min(n, m);
     maxValue = Math.max(n, m);
     array = [];
@@ -10,7 +10,7 @@ function GetRandomArray(n, m, count) {
     return(array);
 }
 
-console.log(GetRandomArray(0, 100, 100));
-console.log(GetRandomArray(2, 5, 50));
-console.log(GetRandomArray(100, -5, 70));
-console.log(GetRandomArray(-3, -10, 42));
+console.log(getRandomArray(0, 100, 100));
+console.log(getRandomArray(2, 5, 50));
+console.log(getRandomArray(100, -5, 70));
+console.log(getRandomArray(-3, -10, 42));

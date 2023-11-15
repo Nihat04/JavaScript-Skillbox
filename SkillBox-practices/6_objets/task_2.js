@@ -1,12 +1,5 @@
 function filter(arr, propertyName, valueToFind) {
-    newArr = [];
-
-    for(let el of arr) {
-        if(Object.keys(el).includes(propertyName) && el[propertyName] === valueToFind) {
-            newArr.push(el);
-        }
-    }
-    return newArr
+    return arr.filter(user => user[propertyName] === valueToFind)
 }
 
 let objects = [
@@ -16,3 +9,4 @@ let objects = [
 ]
     
 let result = filter(objects, 'name', 'Иван');
+console.log(result);
