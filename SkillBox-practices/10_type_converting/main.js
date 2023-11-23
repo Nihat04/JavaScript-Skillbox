@@ -128,6 +128,7 @@ confirmBtn.addEventListener("click", () => {
   let startStudYear = document.getElementById("year-studying");
 
   let minBirthday = new Date(1900, 0, 1);
+  let today = new Date();
 
   if (
     studName.value.trim() === "" ||
@@ -147,6 +148,7 @@ confirmBtn.addEventListener("click", () => {
     return;
   } else if (
     parseInt(startStudYear.value) < 2000 ||
+    parseInt(startStudYear.value) > parseInt(today.getFullYear()) ||
     !parseInt(startStudYear.value)
   ) {
     errorMsg.textContent = "Неверный год начала обучения";
