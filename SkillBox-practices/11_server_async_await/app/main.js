@@ -255,6 +255,30 @@ searchFaculty.addEventListener("input", () => {
   filterStudents(searchFaculty.value, "faculty", studentsList);
 });
 
+// module 11 server
+
+async function testRequest() {
+  let resp = await fetch('http://localhost:3000/api/todos')
+  console.log(resp.json());
+}
+
+async function testPost() {
+  let resp = await fetch('http://localhost:3000/api/todos', {
+    method: 'POST',
+    body: JSON.stringify({
+      name: "Денис",
+      surname: "Пупкин",
+      middleName: "Алексеевич",
+      birthday: new Date(2000, 5 - 1, 5),
+      startStudyingYear: "2020",
+      faculty: "Engeneer",
+    }),
+    headers: {'Content-type': 'application/json'}
+  });
+  console.log(resp.json());
+}
+
 addEventListener('DOMContentLoaded', () => {
   renderStudentsTable(studentsList);
+  testPost();
 })
