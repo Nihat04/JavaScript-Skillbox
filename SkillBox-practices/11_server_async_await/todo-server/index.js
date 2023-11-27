@@ -50,9 +50,12 @@ function makeTodoItemFromData(data) {
 
   // составляем объект, где есть только необходимые поля
   const todoItem = {
-    owner: data.owner && String(data.owner),
     name: data.name && String(data.name),
-    done: Boolean(data.done),
+    surname: data.surname && String(data.surname),
+    middleName: data.middleName && String(data.middleName),
+    birthday: Date(data.birthday),
+    startStudyingYear: data.startStudyingYear && parseInt(data.startStudyingYear),
+    faculty: data.faculty && String(data.faculty),
   };
 
   // проверяем, все ли данные корректные и заполняем объект ошибок, которые нужно отдать клиенту
