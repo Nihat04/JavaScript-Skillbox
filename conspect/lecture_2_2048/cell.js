@@ -37,9 +37,7 @@ export class Cell {
   }
 
   mergeTiles() {
-    this.linkedTile.setValue(
-      this.linkedTile.value + this.linkedTileForMerge.value
-    );
+    this.linkedTile.setValue(this.linkedTile.value + this.linkedTileForMerge.value);
     this.linkedTileForMerge.tileElement.remove();
     this.linkedTileForMerge = null;
   }
