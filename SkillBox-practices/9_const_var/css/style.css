@@ -4,26 +4,31 @@ body {
     background-color: #7A7A7A;
 }
 
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .container {
     margin: 0 auto;
     padding: 20px;
     max-width: 1300px;
 }
 
+:root {
+    --gap: 10px;
+}
+
 /* game */
 
 .game {
-    margin: 0 auto;
-    margin-bottom: 15px;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-width: 830px;
+    flex-wrap: wrap;
+    gap: var(--gap);
 }
 
 .game__card {
+    --offsets: 3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,26 +36,18 @@ body {
     width: 200px;
     height: 200px;
     cursor: pointer;
-}
-
-.game__card:not(:nth-child(4n)) {
-    margin-right: 10px;
-}
-
-.game__card:not(:nth-last-child(-n+4)) {
-    margin-bottom: 10px;
-}
-
-.game__card--open {
-    background-color: aqua;
-}
-
-.game__card--hidden {
     color: transparent;
     background-color: darkblue;
 }
 
+.game__card--open {
+    color: black;
+    background-color: aqua;
+    cursor: default;
+}
+
 .game__card--found {
+    color: black;
     cursor: default;
     background-color: darkgreen;
 }
@@ -63,12 +60,13 @@ body {
 }
 
 .new-game-btn {
-    --width: 100px;
     position: absolute;
-    width: var(--width);
+    width: 100px;
     border: none;
     border-radius: 25px;
-    left: calc(50% - var(--width)/2);
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
     cursor: pointer;
 }
 

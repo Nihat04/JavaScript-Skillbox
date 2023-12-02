@@ -1,13 +1,16 @@
 addEventListener("DOMContentLoaded", function () {
-  const cardsNunmber = 16;
+  const cardsNumber = 16;
   const game = document.getElementById("game");
   const btn = document.getElementById("new-game-btn");
+  const openedCards = [];
+  const foundCards = [];
 
   function newGame() {
     game.innerHTML = '';
-    btn.setAttribute('disabled', '')
-    let arr = generatePairedNumbers(cardsNunmber);
-    arr = shuffle(arr)
+    btn.disabled = true;
+    foundCards.splice(0, foundCards.length);
+    let arr = generatePairedNumbers(cardsNumber);
+    //arr = shuffle(arr)
     createCards(arr)
   }
 
@@ -20,12 +23,28 @@ addEventListener("DOMContentLoaded", function () {
     return arr.sort(() => Math.random() - 0.5);
   }
 
+  function identicallityFound(cards) {
+    for(let i = 0; i <= cards.length; i++) {
+      card = cards.pop();
+      card.classList.remove('game__card--open');
+      card.classList.add('game__card--found');
+      foundCards.push(card);
+    }
+  }
+
+  function hideOpenedCards(cards) {
+    for(let i = 0; i <= cards.length; i++) {
+      card = cards.pop();
+      card.classList.remove('game__card--open');
+    }
+  }
+
   function createCards(arr) {
     for (number of arr) {
-      let card = document.createElement("div");
-      let cardText = document.createElement("p");
+      const card = document.createElement("div");
+      const cardText = document.createElement("p");
 
-      card.classList.add("game__card", "game__card--hidden");
+      card.classList.add("game__card");
       card.id = `card-${number}`;
 
       cardText.classList.add('card__paragraph');
@@ -33,48 +52,26 @@ addEventListener("DOMContentLoaded", function () {
 
       card.append(cardText)
 
-      let isWin = function(cards) {
-        if(!cards.some((el) => el.classList.contains('game__card--hidden'))) {
-          btn.removeAttribute("disabled");
+      const checkForWin = () => {
+        if(foundCards.length === cardsNumber) {
+          alert('You WIN!')
+          btn.disabled = false;
         }
       }
 
       card.addEventListener("click", function () {
-        let cards = Array.from(game.getElementsByClassName("game__card"));
+        if(foundCards.includes(card) ||
+          openedCards.includes(card) ||
+          openedCards.length >= 2) return;
 
-        if(cards.reduce((openedCount, el) => openedCount + (el.classList.contains("game__card--open") ? 1: 0), 0) >= 2) return;
+        openedCards.push(card);
+        card.classList.add('game__card--open');
 
-        card.classList.toggle("game__card--hidden");
-        card.classList.toggle("game__card--open");
+        if(openedCards.length == 2) {
+          openedCards[0].textContent === openedCards[1].textContent ? identicallityFound(openedCards) : setTimeout(() => hideOpenedCards(openedCards), 250);
+        }
 
-        cards.forEach((element) => {
-          if (element.classList.contains("game__card--hidden") ||
-              element.classList.contains("game__card--found") ||
-              element === card) return;
-            
-          if(element.textContent !== card.textContent) {
-            setTimeout(() => {
-              element.classList.add("game__card--hidden");
-              card.classList.add("game__card--hidden");
-              element.classList.remove("game__card--open");
-              card.classList.remove("game__card--open");
-            }, 250);
-            return;
-          }
-
-          element.classList.add("game__card--found");
-          card.classList.add("game__card--found");
-
-          element.classList.remove("game__card--open");
-          card.classList.remove("game__card--open");
-
-          element.replaceWith(element.cloneNode(true));
-          card.replaceWith(card.cloneNode(true))
-
-          setTimeout(() => {
-            isWin(cards)
-          }, 1);
-        });
+        setTimeout(() => checkForWin(), 1);;
       });
 
       game.append(card);
