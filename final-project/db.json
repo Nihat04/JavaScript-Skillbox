@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "name": "Пепперони",
+        "description": "tomato, etc",
+        "price": 4.50,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/pepperoni.png"
+    },
+    {
+        "id": 2,
+        "name": "Маргарита",
+        "description": "tomato, etc",
+        "price": 3,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/margarita.webp"
+    },
+    {
+        "id": 3,
+        "name": "Фридей",
+        "description": "tomato, etc",
+        "price": 6.50,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/pepperoni.png"
+    },
+    {
+        "id": 4,
+        "name": "Сырная",
+        "description": "tomato, etc",
+        "price": 3,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/cheeze.webp"
+    },
+    {
+        "id": 5,
+        "name": "Карбонара",
+        "description": "tomato, etc",
+        "price": 8,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/carbonara.webp"
+    },
+    {
+        "id": 6,
+        "name": "Гавайская",
+        "description": "tomato, etc",
+        "price": 1.50,
+        "count": 1,
+        "category": "pizza",
+        "img": "./src/assets/gavayskaya.webp"
+    },
+    {
+        "id": 7,
+        "name": "Кола",
+        "description": "tomato, etc",
+        "price": 1.00,
+        "count": 1,
+        "category": "drink",
+        "img": "./src/assets/cola.webp"
+    },
+    {
+        "id": 8,
+        "name": "Сок",
+        "description": "tomato, etc",
+        "price": 1.50,
+        "count": 1,
+        "category": "drink",
+        "img": "./src/assets/juice.webp"
+    },
+    {
+        "id": 9,
+        "name": "Фанта",
+        "description": "tomato, etc",
+        "price": 1.00,
+        "count": 1,
+        "category": "drink",
+        "img": "./src/assets/fanta.webp"
+    },
+    {
+        "id": 10,
+        "name": "Морс",
+        "description": "tomato, etc",
+        "price": 2.00,
+        "count": 1,
+        "category": "drink",
+        "img": "./src/assets/mors.webp"
+    },
+    {
+        "id": 11,
+        "name": "Борщ",
+        "description": "tomato, etc",
+        "price": 10.00,
+        "count": 1,
+        "category": "soup",
+        "img": "./src/assets/borsh.webp"
+    },
+    {
+        "id": 12,
+        "name": "Томатный Суп",
+        "description": "tomato, etc",
+        "price": 7.00,
+        "count": 1,
+        "category": "soup",
+        "img": "./src/assets/soup-tomate.webp"
+    },
+    {
+        "id": 13,
+        "name": "Греческий салат",
+        "description": "tomato, etc",
+        "price": 3.50,
+        "count": 1,
+        "category": "salad",
+        "img": "./src/assets/greceskiy.webp"
+    },
+    {
+        "id": 14,
+        "name": "Винигрет",
+        "description": "tomato, etc",
+        "price": 3.00,
+        "count": 1,
+        "category": "salad",
+        "img": "./src/assets/vinegret.webp"
+    }
+]

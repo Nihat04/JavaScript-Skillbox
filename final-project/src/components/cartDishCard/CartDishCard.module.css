@@ -1,0 +1,39 @@
+.dish-card {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100px;
+    color: black;
+    align-items: center;
+}
+
+.dish-card__img {
+    width: 70px;
+}
+
+.dish-card__name {
+    max-width: 100px;
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+}
+
+.dish-card__price {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dish-card__input {
+    width: 40px;
+}
+
+.dish-card__btn {
+    color: black;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.dish-card__btn:hover {
+    color: grey;
+    transition: all 0.1s linear;
+}

@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import CartDishCard from "../cartDishCard/CartDishCard";
 import styles from "./Header.module.css";
 
-const Header = () => {
+const Header = (props) => {
+
+  const {cartDishes, setCartDishes} = props;
+  let totalCost = 0;
+
+  function cartRemoveDish(id) {
+    const newCart = cartDishes.filter(dish => dish.id !== id);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    setCartDishes(newCart);
+  }
+
+  function cartUpdateCount(id, value) {
+
+    if(value <= 0) {
+      cartRemoveDish(id);
+      return
+    }
+
+    const newCart = [...cartDishes];
+
+    newCart.map(el => {
+      if(el.id === id) {
+        el.count = value;
+      }
+    });
+
+    setCartDishes(newCart);
+    localStorage.setItem('cart', JSON.stringify(newCart))
+  }
+ 
   return (
     <header className={styles['header']}>
       <div className={styles['header__top']}>
@@ -22,9 +52,6 @@ const Header = () => {
           </a>
           <a href="#" className={styles['nav__link']}>
             Акции
-          </a>
-          <a href="#" className={styles['nav__link']}>
-            Заказать
           </a>
           <a href="#" className={styles['nav__link']}>
             О нас
@@ -64,6 +91,17 @@ const Header = () => {
               </g>
             </svg>
           </a>
+          <div className={styles['header__cart__menu']}>
+            <div className={styles['cart__menu__list']}>
+              {cartDishes && cartDishes.map(dish => {
+                totalCost += dish.price * dish.count;
+
+                return <CartDishCard key={dish.id} dish={dish} cartRemoveDish={cartRemoveDish} cartUpdateCount={cartUpdateCount}/>
+              })}
+            </div>
+            <button className={styles['cart__menu__btn']}>Оформить</button>
+            <span className={styles['cart__menu__total']}>total: {totalCost}$</span>
+          </div>
         </div>
       </div>
     </header>

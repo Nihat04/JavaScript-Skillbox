@@ -1,5 +1,35 @@
-.content {
+.dishes {
+    --offsets: 3;
+    --gap: 30px;
     display: flex;
     flex-wrap: wrap;
+    gap: var(--gap);
+}
+
+.filter {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.filter__input {
+    padding: 10px 10px;
+    background-color: #E6E6E6;
+    border-radius: 16px;
+    border: none;
+}
+
+.filter__categ__list {
+    display: flex;
+    list-style: none;
     gap: 30px;
+}
+
+.filter__categ__link a{
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+
+.filter__categ__link a:hover {
+    color: olive;
 }

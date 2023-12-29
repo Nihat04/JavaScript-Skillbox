@@ -1,6 +1,6 @@
 .dish-card {
     display: flex;
-    max-width: 300px;
+    width: calc((100% - var(--gap) * var(--offsets)) / (var(--offsets) + 1));
     min-height: 300px;
     flex-direction: column;
     align-items: center;
@@ -26,8 +26,15 @@
 }
 
 .dish-card__btn {
+    margin-bottom: 10px;
     width: 100px;
     height: 25px;
     border: 3px solid var(--green);
     border-radius: 15px;
+    transition: all 0.1s linear;
+}
+
+.dish-card__btn:hover {
+    background-color: var(--green);
+    transition: all 0.1s linear;
 }
