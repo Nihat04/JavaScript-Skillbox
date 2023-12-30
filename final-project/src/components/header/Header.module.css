@@ -60,12 +60,6 @@ a {
     }
 }
 
-.header__cart__svg {
-    --cart-size: 25px;
-    width: var(--cart-size);
-    height: var(--cart-size);
-}
-
 .header__cart__menu {
     position: absolute;
     padding: 20px;

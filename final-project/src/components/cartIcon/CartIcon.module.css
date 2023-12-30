@@ -1,0 +1,5 @@
+.header__cart__svg {
+    --cart-size: 25px;
+    width: var(--cart-size);
+    height: var(--cart-size);
+}

@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './DishCard.module.css'
 
-const DishCard = (params) => {
+const DishCard = (props) => {
 
-  const {dish, cartAppend} = params;
+  const {dish, cartAppend} = props;
 
   return (
     <div className={styles['dish-card']}>
