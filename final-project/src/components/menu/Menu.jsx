@@ -6,7 +6,7 @@ const Menu = (props) => {
 
   const {cartDishes, setCartDishes} = props;
 
-  let [dishList, setDishList] = useState([]);
+  const [dishList, setDishList] = useState([]);
   const [dishListCopy, setDishListCopy] = useState([]);
 
   useEffect(() => {
@@ -30,8 +30,8 @@ const Menu = (props) => {
     let newCart = [...cart, obj]
     
     if(cart && cart.some(el => el.id === obj.id)) {
-      const elToChange = cart.find(el => el.id === obj.id);
-      elToChange.count++;
+      const elemToChange = cart.find(el => el.id === obj.id);
+      elemToChange.count++;
       newCart = cart;
     }
 
@@ -39,13 +39,11 @@ const Menu = (props) => {
     localStorage.setItem('cart', JSON.stringify(newCart));
   }
 
-  function filterDishes(value) {
-    setDishList(dishListCopy.filter((dish) => dish.name.includes(value)));
-    console.log(dishListCopy);
-  }
+  function filterDishes(value, byCategory=false) {
+    let filterProp = "name";
+    if (byCategory) filterProp = "category"
 
-  function filterDishesCateg(categName) {
-    setDishList(dishListCopy.filter((dish) => dish.category.includes(categName)));
+    setDishList(dishListCopy.filter((dish) => dish[filterProp].includes(value)));
     console.log(dishListCopy);
   }
 
@@ -54,11 +52,11 @@ const Menu = (props) => {
       <div className={styles['filter']}>
         <input className={styles['filter__input']} onChange={(e) => filterDishes(e.target.value)} type="text" placeholder='Название' />
         <ul className={styles['filter__categ__list']}>
-          <li className={styles['filter__categ__link']}><a onClick={() => filterDishesCateg('')}>Всё</a></li>
-          <li className={styles['filter__categ__link']}><a onClick={() => filterDishesCateg('pizza')}>Пицца</a></li>
-          <li className={styles['filter__categ__link']}><a onClick={() => filterDishesCateg('salad')}>Салаты</a></li>
-          <li className={styles['filter__categ__link']}><a onClick={() => filterDishesCateg('soup')}>Супы</a></li>
-          <li className={styles['filter__categ__link']}><a onClick={() => filterDishesCateg('drink')}>Напитки</a></li>
+          <li className={styles['filter__categ__link']}><a onClick={() => filterDishes('')}>Всё</a></li>
+          <li className={styles['filter__categ__link']}><a onClick={() => filterDishes('pizza', true)}>Пицца</a></li>
+          <li className={styles['filter__categ__link']}><a onClick={() => filterDishes('salad', true)}>Салаты</a></li>
+          <li className={styles['filter__categ__link']}><a onClick={() => filterDishes('soup', true)}>Супы</a></li>
+          <li className={styles['filter__categ__link']}><a onClick={() => filterDishes('drink', true)}>Напитки</a></li>
         </ul>
       </div>
       <div className={styles['dishes']}>
